@@ -20,9 +20,7 @@ export default class Board extends Component {
 
     onDrop(e) {
         const card = {type: e.dataTransfer.getData("text"), value:"some value"};
-        const temp = this.state.cards;
-        temp.push(card);
-        this.setState({cards: temp});
+        this.setState({cards: [...this.state.cards, card]});
     }
 
     allowDrop(e) {
@@ -34,7 +32,11 @@ export default class Board extends Component {
             return (
                 <div style={this.styles.card}>
                     <label>{card.type}</label>
-                    <input type="text" />
+                    <div>
+                        <label>Select icon</label>
+                        <input type="file" />
+                    </div>
+                    <textarea cols="50" rows="10">{card.value}</textarea>
                 </div>
             )
         });
